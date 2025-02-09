@@ -1,10 +1,28 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Django на METANIT.COM</title>
     <meta charset="utf-8" />
 </head>
+
 <body>
-    <h1>Hello METANIT.COM</h1>
+
+    <body>
+        <h1>{{ header }}</h1>
+        <p>Имя: {{ user.name}} Возраст: {{user.age}}</p>
+        <p>Адресс: ул. {{address.0}}, д. {{address.1}}, кв. {{address.2}}</p>
+        <ul>
+        {% for lan in langs %}
+        <li>{{ lan }}</li>
+        {% endfor %}
+    </ul>
+        {% if user.age > 18 %}
+             <p>чувак взрослый</p>
+        {% else %}
+            <p>чувак малыш</p>
+        {% endif %}
+    </body>
 </body>
+
 </html>
