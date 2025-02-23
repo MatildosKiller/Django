@@ -13,15 +13,34 @@
         <p>Имя: {{ user.name}} Возраст: {{user.age}}</p>
         <p>Адресс: ул. {{address.0}}, д. {{address.1}}, кв. {{address.2}}</p>
         <ul>
-        {% for lan in langs %}
-        <li>{{ lan }}</li>
-        {% endfor %}
-    </ul>
+            {% for lan in langs %}
+            <li>{{ lan }}</li>
+            {% endfor %}
+        </ul>
         {% if user.age > 18 %}
-             <p>чувак взрослый</p>
+        <p>чувак взрослый</p>
         {% else %}
-            <p>чувак малыш</p>
+        <p>чувак малыш</p>
         {% endif %}
+
+
+        {% with name="Tom" age=29 %}
+        <div>
+            <p>добавили внутренние переменные уже в шаблоне:</p>
+            <p>Name: {{ name }}</p>
+            <p>Age: {{ age }}</p>
+        </div>
+
+        {% endwith %}
+        {% with message="Hello" %}
+        <h1>используем фильтры</h1>
+        <h2>{{ message|add:" Django" }}</h2>
+        {% endwith %}
+
+        <p>{% now "Y" %}</p>
+        <p>{% now "F j Y" %}</p>
+        <p>{% now "N, j, Y" %}</p>
+        <p>{% now "N j, Y, P" %}</p>
     </body>
 </body>
 
