@@ -14,7 +14,14 @@ from django.template.response import TemplateResponse
 #     """, headers={"SecretCode": "21234567"}, status=400, reason = "incorrect!!!!")
  
 def index(request):
-    return TemplateResponse(request, "index.html")
+    header = "Данные пользователя"              # обычная переменная
+    langs = ["Python", "Java", "C#"]            # список
+    user ={"name" : "Tom", "age" : 23}          # словарь
+    address = ("Абрикосовая", 23, 45)           # кортеж
+  
+    data = {"header": header, "langs": langs, "user": user, "address": address}
+    return render(request, "index.html", context=data)
+
 
 def about(request):
     data = {"header": "Hello Django", "message": "Welcome to Python"}
