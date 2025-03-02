@@ -37,6 +37,24 @@
         {% endwith %}   
         <h1>Зимний лес</h1>
         <img src="{% static "images/www.jpg" %}" alt="зимний лес" >
+
+        {% with name="Tom" age=29 %}
+        <div>
+            <p>добавили внутренние переменные уже в шаблоне:</p>
+            <p>Name: {{ name }}</p>
+            <p>Age: {{ age }}</p>
+        </div>
+
+        {% endwith %}
+        {% with message="Hello" %}
+        <h1>используем фильтры</h1>
+        <h2>{{ message|add:" Django" }}</h2>
+        {% endwith %}
+
+        <p>{% now "Y" %}</p>
+        <p>{% now "F j Y" %}</p>
+        <p>{% now "N, j, Y" %}</p>
+        <p>{% now "N j, Y, P" %}</p>
     </body>
 </body>
 
