@@ -23,7 +23,7 @@ class PersonEncoder(DjangoJSONEncoder):
 persons=[Person("Bob",27),Person("Joe",78),Person("Mike",16)]
 
 def index(request):
-    header = "Данные пользователя"              # обычная переменная
+    header = "Данные пользователя!!!"              # обычная переменная
     langs = ["Python", "Java", "C#"]            # список
     user ={"name" : "Tom", "age" : 23}          # словарь
     address = ("Абрикосовая", 23, 45)           # кортеж

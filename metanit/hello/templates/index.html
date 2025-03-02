@@ -1,9 +1,11 @@
 <!DOCTYPE html>
+{% load static %}
 <html>
 
 <head>
     <title>Django на METANIT.COM</title>
     <meta charset="utf-8" />
+    <link rel="stylesheet" href="{% static "css/styles.css" %}" />
 </head>
 
 <body>
@@ -13,15 +15,28 @@
         <p>Имя: {{ user.name}} Возраст: {{user.age}}</p>
         <p>Адресс: ул. {{address.0}}, д. {{address.1}}, кв. {{address.2}}</p>
         <ul>
-        {% for lan in langs %}
-        <li>{{ lan }}</li>
-        {% endfor %}
-    </ul>
+            {% for lan in langs %}
+            <li>{{ lan }}</li>
+            {% endfor %}
+        </ul>
         {% if user.age > 18 %}
-             <p>чувак взрослый</p>
+        <p>чувак взрослый</p>
         {% else %}
-            <p>чувак малыш</p>
+        <p>чувак малыш</p>
         {% endif %}
+
+        {% with message="Hello" %}
+        <h2>{{ message|add:" Django" }}</h2>
+        {% endwith %}
+
+        {% with isEnabled=False %}
+        {{ isEnabled|default:"unabled" }}
+        {% endwith %}
+        {% with name="" %}
+        <p>{{ name|default:"Undefined" }}</p>
+        {% endwith %}   
+        <h1>Зимний лес</h1>
+        <img src="{% static "images/www.jpg" %}" alt="зимний лес" >
     </body>
 </body>
 
