@@ -1,0 +1,4 @@
+metanit\hello\__pycache__
+metanit\metanit\__pycache__
+venv
+*.pyc
