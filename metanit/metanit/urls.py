@@ -28,7 +28,7 @@ product_patterns = [
  
 urlpatterns = [
     path("", views.index),
-      path("about/", TemplateView.as_view(template_name="about.html")),
+    path("about/", TemplateView.as_view(template_name="about.html", extra_context={"header": "О сайте"})),
     path("contact/", TemplateView.as_view(template_name="contact.html")),
     path("products/<int:id>/", include(product_patterns)),
     path("user/", views.user),
