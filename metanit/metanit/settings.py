@@ -55,7 +55,9 @@ ROOT_URLCONF = 'metanit.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            BASE_DIR / "metanit/templates",
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
