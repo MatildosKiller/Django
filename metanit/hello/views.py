@@ -44,3 +44,7 @@ def comments(request, id):
  
 def questions(request, id):
     return HttpResponse(f"Вопросы о товаре {id}")
+
+def temp_index(request):
+    return render(request, "temp_index.html")
+ 

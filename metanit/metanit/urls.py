@@ -32,6 +32,7 @@ urlpatterns = [
     path("contact/", TemplateView.as_view(template_name="contact.html")),
     path("products/<int:id>/", include(product_patterns)),
     path("user/", views.user),
+    path("temp/", views.temp_index),
 ]
 
 # urlpatterns = 
