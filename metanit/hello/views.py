@@ -23,15 +23,6 @@ def index(request):
     return render(request, "index.html", context=data)
 
 
-def about(request):
-    data = {"header": "Hello Django", "message": "Welcome to Python"}
-    
-    return render(request, "about.html", context=data)
-
-
-
-def contact(request):
-    return HttpResponse("<h2>Контакты</h2>")
 
 def user(request):
     age = request.GET.get("age")
