@@ -22,7 +22,18 @@ def index(request):
     data = {"header": header, "langs": langs, "user": user, "address": address}
     return render(request, "index.html", context=data)
 
+def login(request):
+    return render(request, "login.html")
 
+def postuser(request):
+    # получаем из данных запроса POST отправленные через форму данные
+    name = request.POST.get("name", "Undefined")
+    age = request.POST.get("age", 1)
+    return HttpResponse(f"<h2>Name: {name}  Age: {age}</h2>")
+
+
+def about(request):
+    return render(request, "about.html", context={"site":"METANIT"})
 
 def user(request):
     age = request.GET.get("age")
