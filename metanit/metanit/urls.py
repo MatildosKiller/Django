@@ -34,6 +34,7 @@ urlpatterns = [
     path("products/<int:id>/", include(product_patterns)),
     path("user/", views.user),
     path("temp/", views.temp_index),
+    path("form/", views.form),
 ]
 
 # urlpatterns = 
