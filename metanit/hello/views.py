@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.template.response import TemplateResponse
-
+from .forms import UserForm
 # def index(request):
 #     host = request.META["HTTP_HOST"] # получаем адрес сервера
 #     user_agent = request.META["HTTP_USER_AGENT"]    # получаем данные браузера
@@ -12,7 +12,16 @@ from django.template.response import TemplateResponse
 #         <p>Path: {path}</p>
 #         <p>User-agent: {user_agent}</p>
 #     """, headers={"SecretCode": "21234567"}, status=400, reason = "incorrect!!!!")
- 
+def form(request):
+    if request.method == "POST":
+        name = request.POST.get("name")
+        age = request.POST.get("age")
+        return HttpResponse(f"<h2>Привет, {name}, твой возраст: {age}</h2>")
+    else:
+        userform = UserForm()
+        return render(request, "form.html", {"form": userform})
+
+
 def index(request):
     header = "Данные пользователя!!!"              # обычная переменная
     langs = ["Python", "Java", "C#"]            # список
