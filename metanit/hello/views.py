@@ -18,7 +18,7 @@ def form(request):
         age = request.POST.get("age")
         return HttpResponse(f"<h2>Привет, {name}, твой возраст: {age}</h2>")
     else:
-        userform = UserForm()
+        userform = UserForm(field_order = ["age", "name"])
         return render(request, "form.html", {"form": userform})
 
 
