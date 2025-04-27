@@ -5,10 +5,10 @@
     <title>METANIT.COM</title>
 </head>
 <body>
-    <form method="POST">
+    <form method="POST" novalidate>
         {% csrf_token %}
     <table>
-        {{ form }}
+        {{ form.as_table }}
     </table>
     <input type="submit" value="Send" >
 </form>

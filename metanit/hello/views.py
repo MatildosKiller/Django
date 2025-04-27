@@ -14,11 +14,21 @@ from .forms import UserForm
 #     """, headers={"SecretCode": "21234567"}, status=400, reason = "incorrect!!!!")
 def form(request):
     if request.method == "POST":
-        name = request.POST.get("name")
-        age = request.POST.get("age")
-        return HttpResponse(f"<h2>Привет, {name}, твой возраст: {age}</h2>")
+        userform = UserForm(request.POST)
+        if userform.is_valid():
+            #name = request.POST.get("name")
+            #age = request.POST.get("age")
+            name = userform.cleaned_data["name"]
+            age = userform.cleaned_data["age"]
+            mail = userform.cleaned_data["email"]
+            return HttpResponse(f"<h2>Привет, {name}, твой возраст: {age}</h2> мыло - {mail}")
+        else:
+            return HttpResponse("Invalid data")    
+        
+        
+        
     else:
-        userform = UserForm(field_order = ["age", "name"])
+        userform = UserForm(field_order = ["age", "name","email"])
         return render(request, "form.html", {"form": userform})
 
 
@@ -38,7 +48,8 @@ def postuser(request):
     # получаем из данных запроса POST отправленные через форму данные
     name = request.POST.get("name", "Undefined")
     age = request.POST.get("age", 1)
-    return HttpResponse(f"<h2>Name: {name}  Age: {age}</h2>")
+    mail = request.POST.get("email")
+    return HttpResponse(f"<h2>Name: {name}  Age: {age}</h2> мыло - {mail}")
 
 
 def about(request):
