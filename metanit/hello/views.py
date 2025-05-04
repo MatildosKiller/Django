@@ -23,7 +23,7 @@ def form(request):
             mail = userform.cleaned_data["email"]
             return HttpResponse(f"<h2>Привет, {name}, твой возраст: {age}</h2> мыло - {mail}")
         else:
-            return HttpResponse("Invalid data")    
+            return render(request, "form.html", {"form": userform})
         
         
         
