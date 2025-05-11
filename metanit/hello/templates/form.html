@@ -5,41 +5,63 @@
     <meta charset="utf-8" />
     <title>METANIT.COM</title>
     <style>
+
+    /* комбинированный способ задания стиля */
         /* .alert{color:rgb(255, 0, 0)}
         .form-group{margin: 20px 10px;}
         .form-group input{width:250px;height: 25px;border-radius:3px;} */
-        .field {
+        /* .field {
             font-weight: bold;
+            color: goldenrod;
         }
-
         .error {
             color: red;
+        }
+         */
+        
+        .myfield{
+            border:1px solid #ccc; 
+            border-radius:5px;
+            height:25px;
+            width:200px;
+            margin: 10px 10px 10px 0;
         }
     </style>
 </head>
 
 <body>
-    <form method="POST" novalidate>
+
+
+
+    <!-- комбинированный способ задания стиля -->
+    <!-- <form method="POST" novalidate>
         {% csrf_token %}
-        <table>
-            {{form}}
-        </table>
-        <!-- <div>
-            {% for field in form %}
-            <div class="form-group">
-                {{field.label_tag}}
-                <div>{{field}}</div>
-                {% if field.errors%}
-                {% for error in field.errors %}
-                <div class="alert alert-danger">
-                    {{error}}
-                </div>
-                {% endfor %}
-                {% endif %}
-            </div>
-            {% endfor %}
-            </div> -->
-        <input type="submit" value="Send">
+        <div>
+        {% for field in form %}
+        <div class="row">
+            {{field.label_tag}}
+            <div>{{field}}</div>
+            {% if field.errors%}
+            <div class="error">{{field.errors}}</div>
+            {% endif %}
+        </div>
+        {% endfor %}
+        </div>
+        <input type="submit" value="Send" >
+    </form> -->
+
+
+    <form method="POST">
+        {% csrf_token %}
+        <div>
+        {% for field in form %}
+        <div>
+            {{field.label_tag}}
+            <div>{{field}}</div>
+        </div>
+        {% endfor %}
+        </div>
+        <input type="submit" value="Send" >
     </form>
 </body>
 
