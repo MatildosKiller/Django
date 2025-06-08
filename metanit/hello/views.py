@@ -1,6 +1,9 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.template.response import TemplateResponse
+
+from .models import Person
+
 from .forms import UserForm
 # def index(request):
 #     host = request.META["HTTP_HOST"] # получаем адрес сервера
@@ -12,6 +15,28 @@ from .forms import UserForm
 #         <p>Path: {path}</p>
 #         <p>User-agent: {user_agent}</p>
 #     """, headers={"SecretCode": "21234567"}, status=400, reason = "incorrect!!!!")
+
+
+bob = Person.objects.create(name="Bob", age=23)
+tom = Person.objects.create(name="Tom", age=31)
+# получаем все объекты
+
+
+people = Person.objects.all()
+print(people.query)
+ 
+# получаем объекты с именем Tom
+people = people.filter(name = "Tom")
+print(people.query)
+ 
+# получаем объекты с возрастом, равным 31
+people = people.filter(age = 31)
+print(people.query)
+ 
+# здесь происходит выполнения запроса в БД
+for person in people:
+    print(f"{person.id}.{person.name} - {person.age}")
+
 def form(request):
     if request.method == "POST":
         userform = UserForm(request.POST)
