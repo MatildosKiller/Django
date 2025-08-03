@@ -41,3 +41,17 @@ people9 = Person.objects.filter(name__regex=r"(am|om)$")
 async def acreate_person():
     person = await Person.objects.acreate(name="Tim", age=26)
     print(person.name)
+
+people10 = Person.objects.order_by("name")
+people11 = Person.objects.order_by("name", "age")
+# упорядочиваем по имени по убыванию
+people12 = Person.objects.order_by("-name")
+
+people13 = Person.objects.values_list("name", flat=True).distinct()
+print(people13)
+ 
+# Результат
+# <QuerySet ['Bob', 'Tom', 'Sam', 'Alice', 'Tom']>
+# print("результат value_list упрощенный")
+# for person in people13:
+#     print(person)
