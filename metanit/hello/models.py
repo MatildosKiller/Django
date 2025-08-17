@@ -1,13 +1,11 @@
 from django.db import models
-from django.db.models import F
 import asyncio
 # Create your models here.
-from django.db import connection
+
  
 class Person(models.Model):
     name = models.CharField(max_length=20)
     age = models.IntegerField()
-
 
 
 async def acreate_person(name_arg, age_arg):
@@ -42,22 +40,3 @@ async def delete_person(_id):
 
 async def delete_person_querry(_id):
    Person.objects.filter(id=_id).delete()
-
-def make_querry():
-    # определяем значение для параметра name
-    name_for_filter = "Tom"
-# определяем значение для параметра age
-    age_for_filter = 35
- 
-    people = Person.objects.raw("SELECT * FROM hello_person WHERE name = %s OR age > %s",
-                                [name_for_filter, age_for_filter])
-    
-    with connection.cursor() as cursor:
-        cursor.execute("UPDATE hello_person SET name ='Tomas' WHERE name='Tom' AND age=31")
-        cursor.execute("SELECT * FROM hello_person WHERE name = 'Tomas'")
-        row = cursor.fetchone()     # получаем одну строку
-        print(row)
-    # people = Person.objects.raw("SELECT id, name FROM hello_person")
-
-
-make_querry()

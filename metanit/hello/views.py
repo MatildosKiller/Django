@@ -36,6 +36,15 @@ print(people.query)
 # здесь происходит выполнения запроса в БД
 for person in people:
     print(f"{person.id}.{person.name} - {person.age}")
+print("#################")
+toms = Person.objects.filter(name="Tom")
+ 
+bobs = Person.objects.filter(name="Bob")
+ 
+# объединяем два QuerySet
+people = toms.union(bobs)
+print(people.values())
+
 
 def form(request):
     if request.method == "POST":
