@@ -18,23 +18,19 @@ from django.urls import path, re_path, include
 from hello import views
 from django.views.generic import TemplateView
 
-product_patterns = [
-    path("", views.products),
-    path("new", views.new),
-    path("top", views.top),
-    path("comments", views.comments),
-    path("questions", views.questions),
-]
+# product_patterns = [
+#     path("", views.products),
+#     path("new", views.new),
+#     path("top", views.top),
+#     path("comments", views.comments),
+#     path("questions", views.questions),
+# ]
  
 urlpatterns = [
     path("", views.index),
-    path("about/", views.about),
-    path("login/",views.login),
-    path("contact/", TemplateView.as_view(template_name="contact.html", extra_context={"header": "О сайте"})),
-    path("products/<int:id>/", include(product_patterns)),
-    path("user/", views.user),
-    path("temp/", views.temp_index),
-    path("form/", views.form),
+    path("create/", views.create),
+    path("edit/<int:id>/", views.edit),
+    path("delete/<int:id>/", views.delete),
 ]
 
 # urlpatterns = 

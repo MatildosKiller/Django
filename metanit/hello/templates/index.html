@@ -1,62 +1,35 @@
 <!DOCTYPE html>
-{% load static %}
 <html>
-
 <head>
-    <title>Django на METANIT.COM</title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="{% static "css/styles.css" %}" />
+    <title>METANIT.COM</title>
 </head>
-
 <body>
-
-    <body>
-        <h1>{{ header }}</h1>
-        <p>Имя: {{ user.name}} Возраст: {{user.age}}</p>
-        <p>Адресс: ул. {{address.0}}, д. {{address.1}}, кв. {{address.2}}</p>
-        <ul>
-            {% for lan in langs %}
-            <li>{{ lan }}</li>
-            {% endfor %}
-        </ul>
-        {% if user.age > 18 %}
-        <p>чувак взрослый</p>
-        {% else %}
-        <p>чувак малыш</p>
-        {% endif %}
-
-
-        {% with message="Hello" %}
-        <h2>{{ message|add:" Django" }}</h2>
-        {% endwith %}
-
-        {% with isEnabled=False %}
-        {{ isEnabled|default:"unabled" }}
-        {% endwith %}
-        {% with name="" %}
-        <p>{{ name|default:"Undefined" }}</p>
-        {% endwith %}   
-        <h1>Зимний лес</h1>
-        <img src="{% static "images/www.jpg" %}" alt="зимний лес" >
-
-        {% with name="Tom" age=29 %}
-        <div>
-            <p>добавили внутренние переменные уже в шаблоне:</p>
-            <p>Name: {{ name }}</p>
-            <p>Age: {{ age }}</p>
-        </div>
-
-        {% endwith %}
-        {% with message="Hello" %}
-        <h1>используем фильтры</h1>
-        <h2>{{ message|add:" Django" }}</h2>
-        {% endwith %}
-
-        <p>{% now "Y" %}</p>
-        <p>{% now "F j Y" %}</p>
-        <p>{% now "N, j, Y" %}</p>
-        <p>{% now "N j, Y, P" %}</p>
-    </body>
+    <form method="POST" action="create/">
+        {% csrf_token %}
+        <p>
+            <label>Введите имя</label><br>
+            <input type="text" name="name" />
+        </p>
+        <p>
+            <label>Введите возраст</label><br>
+            <input type="number" name="age" />
+        </p>
+        <input type="submit" value="Сохранить" >
+    </form>
+    {% if people.count > 0 %}
+    <h2>Список пользователей</h2>
+    <table>
+        <thead><th>Id</th><th>Имя</th><th>Возраст</th><th></th></thead>
+        {% for person in people %}
+        <tr>
+            <td>{{ person.id }}</td>
+            <td>{{ person.name }}</td>
+            <td>{{ person.age }}</td>
+            <td><a href="edit/{{person.id}}">Изменить</a> | <a href="delete/{{person.id}}">Удалить</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
 </body>
-
 </html>
