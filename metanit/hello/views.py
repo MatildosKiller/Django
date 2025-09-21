@@ -1,7 +1,12 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect, HttpResponseNotFound
 from .models import Person
- 
+from .models import Company
+from .models import Product
+
+
+
+apple = Company.objects.create(name="Apple")
 # получение данных из бд
 def index(request):
     people = Person.objects.all()
