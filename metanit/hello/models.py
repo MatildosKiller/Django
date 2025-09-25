@@ -20,7 +20,4 @@ class Product(models.Model):
 
 
 
-apple = Company.objects.get(id=1)
 
-
-apple.product_set.create(name="iPhone 8", price=67890)
